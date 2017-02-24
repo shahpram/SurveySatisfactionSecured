@@ -1,0 +1,41 @@
+<div class="row" ng-controller="physicianSurveyController">
+    <div class="col-md-10 col-md-offset-2 main">
+        <h1>Physician Survey Data</h1>
+        <p>
+        </p>
+        <button ng-click="getAllSurveys()" class="btn btn-default">Refresh</button>
+
+        <h2><a name="surveydata">Survey Data</a></h2>
+        <code>/getallsurveys/</code>
+        <p>Click <a href="http://www.strawberry23.net:8080/satterfieldmedical/getallsurveys/">here</a> to test survey service</p>
+        <button ng-click="getAllSurveys()" class="btn btn-default" type="button">Show Survey Data</button>
+        <button class="btn btn-primary" type="button" ng-click="exportPhysicianDataToExcel()" value="Show">Export To Excel</button>
+        <a href="{{exportUrl}}">Physician Survey Excel Spreadsheet</a>
+        <form>
+            <label>Filter By Institution</label>
+            <select class="form-control" ng-model="code">
+                <option value="All" selected>Default</option>
+                <option ng-repeat="inst in institutions" value="{{inst.code}}">{{inst.name}}</option>
+            </select>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" ng-click="getFilteredPhysicianSurveysBySite(code)">Filter by Site</button>
+            </div>
+        </form>
+        <table class="table">
+            <thead>
+            <th>Site Code</th>
+            <th>Rating</th>
+            <th>Why Feeling</th>
+            <th>Comment</th>
+            <th>Create Date</th>
+            </thead>
+            <tr ng-repeat="sd in physicianSurveys">
+                <td>{{sd.site_code}}</td>
+                <td>{{sd.rating}}</td>
+                <td>{{sd.whyfeeling}}</td>
+                <td>{{sd.comment}}</td>
+                <td>{{sd.createdate}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

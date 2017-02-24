@@ -1,0 +1,95 @@
+<div ng-controller="institutionController">
+    <form class="form-horizontal">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Create Institution</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="code">Institution Code</label>
+                <div class="col-md-4">
+                    <input id="code" name="code" placeholder="Enter code here" class="form-control input-md" required="" type="text" ng-model="site.code">
+                    <span class="help-block">Institution code should be short</span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="institutionName">Institution Name</label>
+                <div class="col-md-4">
+                    <input id="institutionName" name="institutionName" placeholder="Enter institution name here" class="form-control input-md" type="text" ng-model="site.name">
+                    <span class="help-block">Use the legal name if possible</span>
+                </div>
+            </div>
+
+            <!--  -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="institutionName">Country</label>
+                <div class="col-md-4">
+                    <select id="country" name="country" class="form-control" ng-model="site.country">
+                        <!--
+                        <option value="zz" selected>Select Country</option>
+                        <option value="us">United States of America</option>
+                        <option value="ca">Canada</option>
+                        -->
+                        <option value="zh-cn">Peoples Republic of China</option>
+                        <option value="zh-hk">Hong Kong</option>
+                        <option value="zh-sg">Singapore</option>
+                        <option value="zh-tw">Taiwan</option>
+                        <option value="ko">Korea</option>
+                        <option value="ja">Japan</option>
+                    </select>
+                </div>
+            </div>
+
+            <!--  -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="institutionName">App Type</label>
+                <div class="col-md-4">
+                    <select id="appType" name="appType" class="form-control" ng-model="site.type">
+                        <option value="patient" selected>Patient App</option>
+                        <option value="physician">Physician App</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="createInstitutionBtn">Create Institution</label>
+                <div class="col-md-8">
+                    <button type="submit" id="createInstitutionBtn" name="createInstitutionBtn" class="btn btn-success" ng-click="addInstitution(site)">Create New Institution</button>
+                    <button id="cancelInstBtn" name="cancelInstBtn" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <!-- institution listing -->
+            <h2>Institution Listing</h2>
+            <table class="table">
+                <tr>
+                    <th>CODE</th>
+                    <th>NAME</th>
+                    <th>ACTIONS</th>
+                </tr>
+                <tr ng-repeat="inst in institutions">
+                    <td>{{inst.code}}</td>
+                    <td>{{inst.name}}</td>
+                    <td>
+                        <form>
+                            <button class="btn btn-default" type="button">Edit</button>
+                            <button class="btn btn-default" type="button" ng-click="deleteInstitution(inst.id)">Delete</button>
+                            <input type="hidden" id="objId" value="{{inst.code}}">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

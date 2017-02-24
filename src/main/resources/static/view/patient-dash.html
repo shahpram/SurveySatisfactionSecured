@@ -1,0 +1,115 @@
+<div class="row" ng-controller="patientSurveyController">
+    <div class="col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Satterfield Patient Data</h1>
+
+        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>DEMO</h4>
+                <span class="text-muted">Demo Hospital</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>SIH</h4>
+                <span class="text-muted">Shanghai International Hospital</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Label</h4>
+                <span class="text-muted">Hospital</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Label</h4>
+                <span class="text-muted">Hospital</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <span>Filter by Institution</span>
+                <form>
+                    <div class="form-group">
+                        <select class="form-control" ng-model="code">
+                            <option value="All" selected>Default</option>
+                            <option ng-repeat="inst in institutions" value="{{inst.code}}">{{inst.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" ng-click="getFilteredPatientSurveysBySite(code)">Filter by Site</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+
+        <div id="controlBtnRow" class="row">
+            <div class="col-sm-3">
+                <button id="refreshBtn" class="btn btn-primary" ng-click="getAllPatientSurveys()" type="button">Refresh</button>
+            </div>
+            <div class="col-sm-3">
+                <button id="excelBtn" class="btn btn-primary" ng-click="exportPatientDataToExcel()" type="button">Export to Excel</button>
+            </div>
+            <div class="col-sm-6">
+                <a href="{{exportUrl}}">Patient Excel Spreadsheet Link</a>
+            </div>
+        </div>
+
+        <h2 class="sub-header">All Patients</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Site Code ID</th>
+                    <th>Encounter Code</th>
+                    <th>Clinic Rating</th>
+                    <th>Clinic Why Feeling?</th>
+                    <th>Clinic Comments</th>
+                    <th>ER Rating</th>
+                    <th>ER Why Feeling?</th>
+                    <th>ER Comments</th>
+                    <th>Hospital Floor Rating</th>
+                    <th>Hospital Floor Why Feeling?</th>
+                    <th>Hospital Floor Comments</th>
+                    <th>Pre-Op Rating</th>
+                    <th>Pre-Op Why Feeling?</th>
+                    <th>Pre-Op Comments</th>
+                    <th>Post-Op Rating</th>
+                    <th>Post-Op Why Feeling?</th>
+                    <th>Post-Op Comments</th>
+                    <th>Discharge Rating</th>
+                    <th>Discharge Why Feeling?</th>
+                    <th>Discharge Comments</th>
+                    <th>Creation Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="sd in patientSurveys">
+                    <td>{{sd.site_code}}</td>
+                    <td>{{sd.encounter_code}}</td>
+                    <td>{{sd.cvrating}}</td>
+                    <td>{{sd.cvwhyfeeling}}</td>
+                    <td>{{sd.cvcomment}}</td>
+                    <td>{{sd.ervrating}}</td>
+                    <td>{{sd.ervwhyfeeling}}</td>
+                    <td>{{sd.ervcomment}}</td>
+                    <td>{{sd.hfrating}}</td>
+                    <td>{{sd.hfwhyfeeling}}</td>
+                    <td>{{sd.hfcomment}}</td>
+                    <td>{{sd.preoprating}}</td>
+                    <td>{{sd.preopwhyfeeling}}</td>
+                    <td>{{sd.preopcomment}}</td>
+                    <td>{{sd.postoprating}}</td>
+                    <td>{{sd.postopwhyfeeling}}</td>
+                    <td>{{sd.postopcomment}}</td>
+                    <td>{{sd.dischargerating}}</td>
+                    <td>{{sd.dischargewhyfeeling}}</td>
+                    <td>{{sd.dischargecomment}}</td>
+                    <td>{{sd.createdate}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
